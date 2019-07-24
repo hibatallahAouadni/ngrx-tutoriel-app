@@ -1,0 +1,31 @@
+<div class="text-center">
+    <h1 class="p-3">la todolist redux style !</h1>
+</div>
+
+<form [formGroup]="todoForm" (ngSubmit)="createTodo(todoForm.value)" class="p-3">
+    <div class="form-group">
+    <label for="title">Titre </label>
+    <input type="text" class="form-control" id="title" formControlName="title" placeholder="Title">
+    </div>
+    <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="completed" formControlName="completed">
+    <label class="form-check-label" for="completed">Est-elle terminé ? </label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Créer</button>
+</form>
+
+<div class="table-responsive p-3">
+    <table class="table table-hover">
+    <tr *ngFor="let todo of todos$ | async">
+        <td>
+        <label>{{ todo.title }}</label>
+        </td>
+        <td>
+        <input type="checkbox" [ngModel]="todo.completed"/>
+        </td>
+        <td>
+        <button class="btn btn-danger btn-sm" (click)="deleteTodo(todo.id)">Supprimer</button>
+        </td>
+    </tr>
+    </table>
+</div>

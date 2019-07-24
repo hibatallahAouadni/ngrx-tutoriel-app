@@ -2,6 +2,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@Models/*": ["src/app/models/*"],
+      "@StoreConfig": ["src/app/store/index.ts"],
+      "@Actions/*": ["src/app/store/actions/*"],
+      "@Reducers/*": ["src/app/store/reducers/*"],
+      "@Selectors/*": ["src/app/store/selectors/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
