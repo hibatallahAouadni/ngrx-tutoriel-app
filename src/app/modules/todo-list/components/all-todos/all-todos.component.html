@@ -11,7 +11,7 @@
     <input type="checkbox" class="form-check-input" id="completed" formControlName="completed">
     <label class="form-check-label" for="completed">Est-elle terminé ? </label>
     </div>
-    <button type="submit" class="btn btn-primary btn-sm">Créer</button>
+    <button type="submit" class="btn btn-outline-primary btn-sm">Créer</button>
 </form>
 
 <div class="table-responsive p-3">
@@ -24,7 +24,10 @@
         <input type="checkbox" [ngModel]="todo.completed"/>
         </td>
         <td>
-        <button class="btn btn-danger btn-sm" (click)="deleteTodo(todo.id)">Supprimer</button>
+        <button class="btn btn-outline-info btn-sm" (click)="selectTodo(todo.id)">Modifier</button>
+        </td>
+        <td>
+        <button class="btn btn-outline-danger btn-sm" (click)="deleteTodo(todo.id)">Supprimer</button>
         </td>
     </tr>
     </table>

@@ -2,11 +2,13 @@ import { Store, select } from '@ngrx/store';
 import { OnInit, Component, Inject  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 import { TodoListModule } from '@Actions/todo-list.action';
 import { AppState } from '@StoreConfig';
 import { Todo } from '@Models/todo';
 import { selectTodos$ } from  '@Selectors/todo-list.selector';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-all-todos',
@@ -21,7 +23,8 @@ export class AllTodosComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    @Inject(FormBuilder) fb: FormBuilder
+    @Inject(FormBuilder) fb: FormBuilder,
+    private router: Router
   ) {
     this.todos$ = store
       .pipe(
@@ -50,6 +53,11 @@ export class AllTodosComponent implements OnInit {
   
     this.store.dispatch(new  TodoListModule.CreateTodo(payload));
     this.todoForm.reset();
+  }
+  
+  selectTodo(todo) {
+    this.store.dispatch(new TodoListModule.SelectTodo(todo));
+    this.router.navigate(['/todo-list/select-todo']);
   }
 
   deleteTodo(id: number) {
